@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PastryShopModelContainer" CdmEntityContainer="PastryShopEntities">
+    <EntitySetMapping Name="Composition">
+      <EntityTypeMapping TypeName="PastryShopModel.Composition">
+        <MappingFragment StoreEntitySet="Composition">
+          <ScalarProperty Name="IdComposition" ColumnName="IdComposition" />
+          <ScalarProperty Name="IdIngredients" ColumnName="IdIngredients" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredients">
+      <EntityTypeMapping TypeName="PastryShopModel.Ingredients">
+        <MappingFragment StoreEntitySet="Ingredients">
+          <ScalarProperty Name="IdIngredients" ColumnName="IdIngredients" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdProvder" ColumnName="IdProvder" />
+          <ScalarProperty Name="IdUnitMeasurement" ColumnName="IdUnitMeasurement" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="PastryShopModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Masa" ColumnName="Masa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provider">
+      <EntityTypeMapping TypeName="PastryShopModel.provider">
+        <MappingFragment StoreEntitySet="provider">
+          <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PastryShopModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitMeasurement">
+      <EntityTypeMapping TypeName="PastryShopModel.UnitMeasurement">
+        <MappingFragment StoreEntitySet="UnitMeasurement">
+          <ScalarProperty Name="IdUnitMeasurement" ColumnName="IdUnitMeasurement" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

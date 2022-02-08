@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PastryShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cheque">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Count" Type="int" />
+    <Property Name="IdWachPow" Type="int" />
+    <Property Name="IdWachMac" Type="int" />
+    <Property Name="IdWashing" Type="int" />
+    <Property Name="IdScore" Type="int" />
+    <Property Name="IdReport" Type="int" />
+  </EntityType>
+  <EntityType Name="Composition">
+    <Key>
+      <PropertyRef Name="IdComposition" />
+    </Key>
+    <Property Name="IdComposition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdIngredients" Type="int" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Drying">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdWashingMachines" Type="int" />
+  </EntityType>
+  <EntityType Name="Ingredients">
+    <Key>
+      <PropertyRef Name="IdIngredients" />
+    </Key>
+    <Property Name="IdIngredients" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdProvder" Type="int" Nullable="false" />
+    <Property Name="IdUnitMeasurement" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Masa" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="provider">
+    <Key>
+      <PropertyRef Name="IdProvider" />
+    </Key>
+    <Property Name="IdProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountWashing" Type="int" />
+    <Property Name="SumNal" Type="int" />
+    <Property Name="SumBeznal" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_Role" />
+    </Key>
+    <Property Name="Id_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Count" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="MiddleName" Type="nvarchar(max)" />
+    <Property Name="Login" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UnitMeasurement">
+    <Key>
+      <PropertyRef Name="IdUnitMeasurement" />
+    </Key>
+    <Property Name="IdUnitMeasurement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Washing">
+    <Key>
+      <PropertyRef Name="IdWashing" />
+    </Key>
+    <Property Name="IdWashing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdService" Type="int" />
+    <Property Name="IdDrying" Type="int" />
+    <Property Name="IdStaff" Type="int" />
+    <Property Name="IdStatus" Type="int" />
+    <Property Name="IdScore" Type="int" />
+    <Property Name="IdReport" Type="int" />
+    <Property Name="IdWashingMachines" Type="int" />
+    <Property Name="IdWashingPowser" Type="int" />
+  </EntityType>
+  <EntityType Name="WashingMachines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WashingPowder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Cheki-Briki_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cheque">
+        <PropertyRef Name="IdWachPow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cheki-Briki_Syshka">
+    <End Role="Drying" Type="Self.Drying" Multiplicity="0..1" />
+    <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drying">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cheque">
+        <PropertyRef Name="IdWachMac" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cheque_Report">
+    <End Role="Report" Type="Self.Report" Multiplicity="0..1" />
+    <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Report">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cheque">
+        <PropertyRef Name="IdReport" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cheque_Score">
+    <End Role="Score" Type="Self.Score" Multiplicity="0..1" />
+    <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Score">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cheque">
+        <PropertyRef Name="IdScore" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cheque_Washing">
+    <End Role="Washing" Type="Self.Washing" Multiplicity="0..1" />
+    <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Washing">
+        <PropertyRef Name="IdWashing" />
+      </Principal>
+      <Dependent Role="Cheque">
+        <PropertyRef Name="IdWashing" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Ingredients">
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="IdIngredients" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdIngredients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drying_WashingMachines">
+    <End Role="WashingMachines" Type="Self.WashingMachines" Multiplicity="0..1" />
+    <End Role="Drying" Type="Self.Drying" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WashingMachines">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Drying">
+        <PropertyRef Name="IdWashingMachines" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_provider">
+    <End Role="provider" Type="Self.provider" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="IdProvider" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdProvder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_UnitMeasurement">
+    <End Role="UnitMeasurement" Type="Self.UnitMeasurement" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitMeasurement">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_Role" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stirki_Employee">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stirki_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stirki_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stirki_Syshka">
+    <End Role="Drying" Type="Self.Drying" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drying">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdDrying" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Washing_WashingMachines">
+    <End Role="WashingMachines" Type="Self.WashingMachines" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WashingMachines">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdWashingMachines" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Washing_WashingPowder">
+    <End Role="WashingPowder" Type="Self.WashingPowder" Multiplicity="0..1" />
+    <End Role="Washing" Type="Self.Washing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WashingPowder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Washing">
+        <PropertyRef Name="IdWashingPowser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PastryShopModelContainer">
+    <EntitySet Name="Cheque" EntityType="Self.Cheque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composition" EntityType="Self.Composition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drying" EntityType="Self.Drying" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="provider" EntityType="Self.provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitMeasurement" EntityType="Self.UnitMeasurement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Washing" EntityType="Self.Washing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WashingMachines" EntityType="Self.WashingMachines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WashingPowder" EntityType="Self.WashingPowder" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cheki-Briki_Service" Association="Self.FK_Cheki-Briki_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Cheque" EntitySet="Cheque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cheki-Briki_Syshka" Association="Self.FK_Cheki-Briki_Syshka">
+      <End Role="Drying" EntitySet="Drying" />
+      <End Role="Cheque" EntitySet="Cheque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cheque_Report" Association="Self.FK_Cheque_Report">
+      <End Role="Report" EntitySet="Report" />
+      <End Role="Cheque" EntitySet="Cheque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cheque_Score" Association="Self.FK_Cheque_Score">
+      <End Role="Score" EntitySet="Score" />
+      <End Role="Cheque" EntitySet="Cheque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cheque_Washing" Association="Self.FK_Cheque_Washing">
+      <End Role="Washing" EntitySet="Washing" />
+      <End Role="Cheque" EntitySet="Cheque" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Ingredients" Association="Self.FK_Composition_Ingredients">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Product" Association="Self.FK_Composition_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drying_WashingMachines" Association="Self.FK_Drying_WashingMachines">
+      <End Role="WashingMachines" EntitySet="WashingMachines" />
+      <End Role="Drying" EntitySet="Drying" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_provider" Association="Self.FK_Ingredients_provider">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_UnitMeasurement" Association="Self.FK_Ingredients_UnitMeasurement">
+      <End Role="UnitMeasurement" EntitySet="UnitMeasurement" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stirki_Employee" Association="Self.FK_Stirki_Employee">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stirki_Service" Association="Self.FK_Stirki_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stirki_Status" Association="Self.FK_Stirki_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stirki_Syshka" Association="Self.FK_Stirki_Syshka">
+      <End Role="Drying" EntitySet="Drying" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Washing_WashingMachines" Association="Self.FK_Washing_WashingMachines">
+      <End Role="WashingMachines" EntitySet="WashingMachines" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Washing_WashingPowder" Association="Self.FK_Washing_WashingPowder">
+      <End Role="WashingPowder" EntitySet="WashingPowder" />
+      <End Role="Washing" EntitySet="Washing" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

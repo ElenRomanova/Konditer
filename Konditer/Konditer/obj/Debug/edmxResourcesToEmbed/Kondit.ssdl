@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PastryShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Composition">
+    <Key>
+      <PropertyRef Name="IdComposition" />
+    </Key>
+    <Property Name="IdComposition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdIngredients" Type="int" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ingredients">
+    <Key>
+      <PropertyRef Name="IdIngredients" />
+    </Key>
+    <Property Name="IdIngredients" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdProvder" Type="int" Nullable="false" />
+    <Property Name="IdUnitMeasurement" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Masa" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="provider">
+    <Key>
+      <PropertyRef Name="IdProvider" />
+    </Key>
+    <Property Name="IdProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UnitMeasurement">
+    <Key>
+      <PropertyRef Name="IdUnitMeasurement" />
+    </Key>
+    <Property Name="IdUnitMeasurement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Composition_Ingredients">
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="IdIngredients" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdIngredients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_provider">
+    <End Role="provider" Type="Self.provider" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="IdProvider" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdProvder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_UnitMeasurement">
+    <End Role="UnitMeasurement" Type="Self.UnitMeasurement" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitMeasurement">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PastryShopModelContainer">
+    <EntitySet Name="Composition" EntityType="Self.Composition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="provider" EntityType="Self.provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitMeasurement" EntityType="Self.UnitMeasurement" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Composition_Ingredients" Association="Self.FK_Composition_Ingredients">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Product" Association="Self.FK_Composition_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_provider" Association="Self.FK_Ingredients_provider">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_UnitMeasurement" Association="Self.FK_Ingredients_UnitMeasurement">
+      <End Role="UnitMeasurement" EntitySet="UnitMeasurement" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

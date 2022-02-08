@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PastryShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Composition">
+    <Key>
+      <PropertyRef Name="IdComposition" />
+    </Key>
+    <Property Name="IdComposition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdIngredients" Type="Int32" Nullable="false" />
+    <Property Name="IdProduct" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ingredients" Relationship="Self.FK_Composition_Ingredients" FromRole="Composition" ToRole="Ingredients" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Composition_Product" FromRole="Composition" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Ingredients">
+    <Key>
+      <PropertyRef Name="IdIngredients" />
+    </Key>
+    <Property Name="IdIngredients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdProvder" Type="Int32" Nullable="false" />
+    <Property Name="IdUnitMeasurement" Type="Int32" Nullable="false" />
+    <Property Name="Weight" Type="Double" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Composition" Relationship="Self.FK_Composition_Ingredients" FromRole="Ingredients" ToRole="Composition" />
+    <NavigationProperty Name="provider" Relationship="Self.FK_Ingredients_provider" FromRole="Ingredients" ToRole="provider" />
+    <NavigationProperty Name="UnitMeasurement" Relationship="Self.FK_Ingredients_UnitMeasurement" FromRole="Ingredients" ToRole="UnitMeasurement" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Masa" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Composition" Relationship="Self.FK_Composition_Product" FromRole="Product" ToRole="Composition" />
+  </EntityType>
+  <EntityType Name="provider">
+    <Key>
+      <PropertyRef Name="IdProvider" />
+    </Key>
+    <Property Name="IdProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_provider" FromRole="provider" ToRole="Ingredients" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UnitMeasurement">
+    <Key>
+      <PropertyRef Name="IdUnitMeasurement" />
+    </Key>
+    <Property Name="IdUnitMeasurement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_UnitMeasurement" FromRole="UnitMeasurement" ToRole="Ingredients" />
+  </EntityType>
+  <Association Name="FK_Composition_Ingredients">
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="IdIngredients" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdIngredients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Composition_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Composition">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_provider">
+    <End Role="provider" Type="Self.provider" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="IdProvider" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdProvder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_UnitMeasurement">
+    <End Role="UnitMeasurement" Type="Self.UnitMeasurement" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitMeasurement">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="IdUnitMeasurement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PastryShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Composition" EntityType="Self.Composition" />
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="provider" EntityType="Self.provider" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UnitMeasurement" EntityType="Self.UnitMeasurement" />
+    <AssociationSet Name="FK_Composition_Ingredients" Association="Self.FK_Composition_Ingredients">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Composition_Product" Association="Self.FK_Composition_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Composition" EntitySet="Composition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_provider" Association="Self.FK_Ingredients_provider">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_UnitMeasurement" Association="Self.FK_Ingredients_UnitMeasurement">
+      <End Role="UnitMeasurement" EntitySet="UnitMeasurement" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
